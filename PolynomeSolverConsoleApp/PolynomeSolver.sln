@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36127.28 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolynomeSolverConsoleApp", "PolynomeSolverConsoleApp.csproj", "{DCD0CE3A-C065-4B2F-9BDB-C4669E25DD89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolynomialLib", "..\PolynomLib\PolynomialLib.csproj", "{C3845E32-F1B3-4311-A6B7-1F187049F204}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DCD0CE3A-C065-4B2F-9BDB-C4669E25DD89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCD0CE3A-C065-4B2F-9BDB-C4669E25DD89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCD0CE3A-C065-4B2F-9BDB-C4669E25DD89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3845E32-F1B3-4311-A6B7-1F187049F204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3845E32-F1B3-4311-A6B7-1F187049F204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3845E32-F1B3-4311-A6B7-1F187049F204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3845E32-F1B3-4311-A6B7-1F187049F204}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
