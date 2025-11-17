@@ -2,15 +2,16 @@
 <EquationData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <FxCoefficients>
     <Coefficients>
-      <double>4</double>
-      <double>-4</double>
       <double>1</double>
+      <double>2</double>
+      <double>3</double>
     </Coefficients>
   </FxCoefficients>
   <GxCoordinates>
     <XYCoordinates>
+      <Point X="11" Y="22" />
+      <Point X="33" Y="44" />
       <Point X="0" Y="0" />
-      <Point X="1" Y="0" />
     </XYCoordinates>
   </GxCoordinates>
 </EquationData>

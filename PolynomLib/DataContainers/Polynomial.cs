@@ -111,6 +111,10 @@ namespace PolynomialLib.DataContainers
                 {
                     part = $"{coeff}*x";
                 }
+                else if (coeff == 1)
+                {
+                    part = $"x^{i}";
+                }
                 else
                 {
                     part = $"{coeff}*x^{i}";

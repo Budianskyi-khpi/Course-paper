@@ -2,41 +2,46 @@
 {
     public class Coordinates
     {
-        public List<double> XCoordinates { get; set; }
-        public List<double> YCoordinates { get; set; }
+        public List<Point> XYCoordinates { get; set; } = new();
 
         public Coordinates(IList<double> x, IList<double> y)
         {
             if (x.Count == y.Count)
             {
-                XCoordinates = x.ToList();
-                YCoordinates = y.ToList();
+                for(int i = 0; i < x.Count; i++)
+                {
+                    Add(x[i], y[i]);
+                }
             }
             else
             {
                 throw new ArgumentException("Expected equal count of elements in X coordinates array and Y coordinates array");
             }
         }
+
         private Coordinates()
         {
-            XCoordinates = new List<double>();
-            YCoordinates = new List<double>();
+            XYCoordinates = new List<Point>();
         }
 
         public void Add(double x, double y)
         {
-            XCoordinates.Add(x);
-            YCoordinates.Add(y);
+            XYCoordinates.Add(new Point(x, y));
+        }
+
+        public void Remove()
+        {
+            XYCoordinates.RemoveAt(XYCoordinates.Count - 1);
         }
 
         public override string ToString()
         {
             string result = "";
 
-            for(int i = 0; i < XCoordinates.Count; i++)
+            for(int i = 0; i < XYCoordinates.Count; i++)
             {
-                result += $"({XCoordinates[i].ToString()}, {YCoordinates[i].ToString()})";
-                if(i != XCoordinates.Count - 1)
+                result += XYCoordinates[i].ToString();
+                if(i != XYCoordinates.Count - 1)
                 {
                     result += ", ";
                 }

@@ -7,13 +7,9 @@
     </Coefficients>
   </FxCoefficients>
   <GxCoordinates>
-    <XCoordinates>
-      <double>0</double>
-      <double>1</double>
-    </XCoordinates>
-    <YCoordinates>
-      <double>0</double>
-      <double>1</double>
-    </YCoordinates>
+    <XYCoordinates>
+      <Point X="0" Y="0" />
+      <Point X="1" Y="1" />
+    </XYCoordinates>
   </GxCoordinates>
 </EquationData>

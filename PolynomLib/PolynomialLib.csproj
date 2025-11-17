@@ -10,4 +10,8 @@
     <PackageReference Include="QuestPDF" Version="2025.7.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataManager\Data\AutoXmlSave\" />
+  </ItemGroup>
+
 </Project>

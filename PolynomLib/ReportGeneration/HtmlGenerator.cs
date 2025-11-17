@@ -94,7 +94,8 @@ namespace PolynomialLib.ReportGeneration
             // f(x) Block 
             sb.AppendLine("  <div class=\"content-block\">");
             sb.AppendLine("    <h2>Input Data: f(x)</h2>");
-            string f_text = "f(x) = " + string.Join(" + ", model.F_Coefficients.Coefficients.Select((coef, i) => $"{coef}*x<sup>{i}</sup>"));
+            //string f_text = "f(x) = " + string.Join(" + ", model.F_Coefficients.Coefficients.Select((coef, i) => $"{coef}*x<sup>{i}</sup>"));
+            string f_text = "f(x) = " + model.F_Coefficients;
             sb.AppendLine("    <p><code>" + f_text + "</code></p>");
             sb.AppendLine("  </div>");
 
@@ -103,9 +104,9 @@ namespace PolynomialLib.ReportGeneration
             sb.AppendLine("    <h2>Input Data: g(x)</h2>");
             sb.AppendLine("    <p>Function g(x) is defined by points:</p>");
             sb.AppendLine("    <ul>");
-            for (int i = 0; i < model.G_Coordinates.XCoordinates.Count; i++)
+            for (int i = 0; i < model.G_Coordinates.XYCoordinates.Count; i++)
             {
-                sb.AppendLine($"      <li><code>({model.G_Coordinates.XCoordinates[i]}, {model.G_Coordinates.YCoordinates[i]})</code></li>");
+                sb.AppendLine($"      <li><code>{model.G_Coordinates.XYCoordinates[i]}</code></li>");
             }
             sb.AppendLine("    </ul>");
             sb.AppendLine("  </div>");
