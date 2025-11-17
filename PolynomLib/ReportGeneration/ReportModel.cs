@@ -2,6 +2,9 @@
 
 namespace PolynomialLib.ReportGeneration
 {
+    /// <summary>
+    /// Class with all neccessary information for report generation
+    /// </summary>
     public class ReportModel
     {
         public Polynomial F_Coefficients { get; set; }

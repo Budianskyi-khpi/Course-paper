@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 
 namespace PolynomialLib.DataContainers
 {
+    /// <summary>
+    /// Class container for managing all necesary data needed for calculation
+    /// </summary>
     [XmlInclude(typeof(Coordinates))]
     [XmlInclude(typeof(Polynomial))]
     public class EquationData
@@ -20,10 +23,7 @@ namespace PolynomialLib.DataContainers
             GxCoordinates = coordinates;
         }
 
-        private EquationData()
-        {
-
-        }
+        private EquationData() { }
 
         public override string ToString()
         {

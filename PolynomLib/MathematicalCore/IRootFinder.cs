@@ -7,6 +7,9 @@ using PolynomialLib.DataContainers;
 
 namespace PolynomialLib.MathematicalCore
 {
+    /// <summary>
+    /// Interface for root finding methods
+    /// </summary>
     public interface IRootFinder
     {
         List<double> FindRoots(Polynomial polynomial);

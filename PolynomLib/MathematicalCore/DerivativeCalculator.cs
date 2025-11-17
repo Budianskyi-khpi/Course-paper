@@ -9,6 +9,11 @@ namespace PolynomialLib.MathematicalCore
 {
     internal static class DerivativeCalculator
     {
+        /// <summary>
+        /// Calculate derivative from given polynomial
+        /// </summary>
+        /// <param name="polinomial"></param>
+        /// <returns></returns>
         public static Polynomial Differentiate(Polynomial polinomial)
         {
             if (polinomial.Coefficients.Count < 2)

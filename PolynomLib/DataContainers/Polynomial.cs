@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PolynomialLib.DataContainers
 {
+    /// <summary>
+    /// Class container for managing polinomial
+    /// </summary>
     public class Polynomial
     {
         public List<double> Coefficients { get; private set; }
@@ -20,6 +23,11 @@ namespace PolynomialLib.DataContainers
             Coefficients = new List<double>();
         }
 
+        /// <summary>
+        /// Evaluate polynomial with given X
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public double Evaluate(double x)
         {
             double result = 0.0;
