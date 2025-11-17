@@ -21,6 +21,7 @@ namespace PolynomialLib
         public EquationData EquationData { get; private set; }
         public Polynomial FxFunction => EquationData.FxCoefficients;
         public Polynomial GxFunction { get; private set; }
+        public Polynomial FxGxFunction { get; private set; }
         public Coordinates Coordinates => EquationData.GxCoordinates;
         public bool Solved { get; private set; }
         public List<double> Roots { get; private set; }
@@ -38,6 +39,7 @@ namespace PolynomialLib
             var emptyCoords = new Coordinates(new List<double>(), new List<double>());
 
             EquationData = new EquationData(emptyPoly, emptyCoords);
+            Polynomial FxGxFunction = null;
 
             Solved = false;
             Roots = new List<double>();
@@ -98,10 +100,10 @@ namespace PolynomialLib
             GxFunction = FindLagrangePolynomial();
 
             // fx - gx
-            Polynomial newPolynomial = FxFunction - GxFunction;
+            FxGxFunction = FxFunction - GxFunction;
 
             // find roots
-            Roots = solvingMethod.FindRoots(newPolynomial);
+            Roots = solvingMethod.FindRoots(FxGxFunction);
             Solved = true;
 
             return Roots;
@@ -115,6 +117,14 @@ namespace PolynomialLib
         {
             if(Solved)
             {
+                if(Roots.Count == 0)
+                {
+                    return $"Equation doesn't have any roots!";
+                }
+                else if(Roots.Count == 1)
+                {
+                    return $"Equation root: {string.Join(",", Roots)}";
+                }
                 return $"Equation roots: {string.Join(",", Roots)}";
             }
             else
@@ -196,9 +206,9 @@ namespace PolynomialLib
         /// <summary>
         /// Delete last element form polynomial
         /// </summary>
-        public void RemoveLastCoefficientFromFx() 
+        public void RemoveFirstCoefficientFromFx() 
         {
-            FxFunction.Coefficients.RemoveAt(0);
+            FxFunction.Coefficients.RemoveAt(FxFunction.Coefficients.Count-1);
             Solved = false;
         }
 
@@ -228,6 +238,19 @@ namespace PolynomialLib
         {
             PathManager.Delete(path);
 
+        }
+
+        public (double, double, double, double) Ranges(double xMargin = 2, double yMargin = 3)
+        {
+            Solve();
+            double xMin = Roots.Count > 0 ? Roots.Min() - xMargin : -xMargin;
+            double xMax = Roots.Count > 0 ? Roots.Max() + xMargin : xMargin;
+            double yFrom = FxGxFunction.Evaluate(xMin);
+            double yTo = FxGxFunction.Evaluate(xMax);
+            double yMin = Math.Min(Math.Min(yFrom, yTo), 0) - yMargin;
+            double yMax = Math.Max(Math.Max(yFrom, yTo), 0) + yMargin;
+
+            return (xMin, xMax, yMin, yMax);
         }
     }
 }

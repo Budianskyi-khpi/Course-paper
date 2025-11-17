@@ -7,6 +7,7 @@ using System.Windows.Shapes;
 using PolynomialLib;
 using PolynomialLib.DataContainers;
 using PolynomialLib.ReportGeneration;
+using System.Windows.Media;
 
 namespace PolynomialSolverWpfApp
 {
@@ -46,6 +47,8 @@ namespace PolynomialSolverWpfApp
             DataGridF.ItemsSource = displayList;
 
             ColumnCoefficient.Binding = new Binding("Value");
+
+            DrawGraph();
         }
 
         private void SyncFTableToModel()
@@ -73,7 +76,8 @@ namespace PolynomialSolverWpfApp
             // Specify which columns are bound to which properties:
             ColumnX.Binding = new Binding("X");
             ColumnY.Binding = new Binding("Y");
-            //DrawGraph();
+
+            DrawGraph();
         }
 
         private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
@@ -126,11 +130,6 @@ namespace PolynomialSolverWpfApp
             }
         }
 
-        private void CanvasGraph_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-
-        }
-
         private void MenuItemExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -158,7 +157,14 @@ namespace PolynomialSolverWpfApp
             // Confirm changes in the table:
             DataGridF.CommitEdit();
             // Add a new row:
-            facade.RemoveLastCoefficientFromFx();
+            try
+            {
+                facade.RemoveFirstCoefficientFromFx();
+            }
+            catch
+            {
+                MessageBox.Show("Can't execute this operation!");
+            }
             TextBoxResults.Clear();
             InitFTable();
         }
@@ -179,7 +185,14 @@ namespace PolynomialSolverWpfApp
             DataGridG.CommitEdit();
 
             // Remove the last row:
-            facade.RemoveLastCoordinate();
+            try
+            {
+                facade.RemoveLastCoordinate();
+            }
+            catch
+            {
+                MessageBox.Show("Can't execute this operation!");
+            }
             TextBoxResults.Clear();
             InitGTable();
         }
@@ -190,7 +203,8 @@ namespace PolynomialSolverWpfApp
             facade.Solve();
             string text = facade.Results();
             TextBoxResults.Text = text.Replace("\t", Environment.NewLine);
-            //DrawGraph();
+
+            DrawGraph();
         }
 
         private void ReportHtml_Click(object sender, RoutedEventArgs e)
@@ -251,6 +265,35 @@ namespace PolynomialSolverWpfApp
 
             WindowShowReport windowShowReport = new(filePath, pdfGenerator);
             windowShowReport.ShowDialog();
+        }
+
+        /// <summary>
+        /// Redraw the graph
+        /// </summary>
+        private void DrawGraph()
+        {
+            try
+            {
+                if ( facade.Solved && CanvasGraph != null)
+                {
+                    (double xMin, double xMax, double yMin, double yMax) = facade.Ranges(xMargin: 2, yMargin: 2);
+                    new GraphBuilder().DrawGraph(CanvasGraph, facade.FxGxFunction, xMin, xMax, yMin, yMax);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Something went wrong! ");
+            }
+        }
+
+        /// <summary>
+        /// Redraw graph when canvas size was changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CanvasGraph_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            DrawGraph();
         }
     }
 }

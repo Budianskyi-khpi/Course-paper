@@ -7,6 +7,10 @@ using System.Xml.Serialization;
 
 namespace PolynomialLib.DataManager
 {
+    /// <summary>
+    /// Class for writing/reading data to\from XML file
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     internal class XmlManager<T>
     {
         private string _path;
@@ -18,6 +22,13 @@ namespace PolynomialLib.DataManager
             _path = path;
         }
 
+        /// <summary>
+        /// Read data from XML file
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="FileNotFoundException"></exception>
         public T Read(string path = null)
         {
             string actualPath = path ?? _path;
@@ -51,6 +62,13 @@ namespace PolynomialLib.DataManager
             }
         }
 
+        /// <summary>
+        /// Write data to XML file
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="path"></param>
+        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="UnauthorizedAccessException"></exception>
         public void Write(T obj, string path = null)
         {
             string actualPath = path ?? _path;

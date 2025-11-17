@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PolynomialLib.ReportGeneration
+﻿namespace PolynomialLib.ReportGeneration
 {
+    /// <summary>
+    /// Abstract class for report generating
+    /// </summary>
     public abstract class AbstractGenerator
     {
         protected const string DEFAULT_PATH = "C:\\KhPI\\OOP\\Course paper\\PolynomSolver\\PolynomLib\\DataManager\\Data\\Reports\\";
+
+        /// <summary>
+        /// Make path unique. If such pass already exists, baseName will be changed to givenName(number of such names)
+        /// </summary>
+        /// <param name="directory">Path to directory where file will be stored</param>
+        /// <param name="baseName">File name</param>
+        /// <param name="extension">Extension</param>
+        /// <returns>Unique path</returns>
         public string GetUniqueFullPath(string directory, string baseName, string extension)
         {
             if (!extension.StartsWith("."))
@@ -40,7 +45,22 @@ namespace PolynomialLib.ReportGeneration
             return newFullPath;
         }
 
+        /// <summary>
+        /// Create path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="name"></param>
+        /// <param name="autoGenereatedPath"></param>
+        /// <returns></returns>
         protected abstract string Create(string path, string name, bool autoGenereatedPath);
+
+        /// <summary>
+        /// Generate report
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="name"></param>
+        /// <param name="autoGenereatedPath"></param>
+        /// <returns></returns>
         public abstract string Generate(string path = null, string name = null, bool autoGenereatedPath = true);
     }
 }

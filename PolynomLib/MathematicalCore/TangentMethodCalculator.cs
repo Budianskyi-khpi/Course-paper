@@ -20,6 +20,11 @@ namespace PolynomialLib.MathematicalCore
             this.initialGuesses = initialGuesses;
         }
 
+        /// <summary>
+        /// Find All roots
+        /// </summary>
+        /// <param name="polynomial"></param>
+        /// <returns></returns>
         public List<double> FindRoots(Polynomial polynomial)
         {
             List<double> roots = new List<double>();
@@ -39,6 +44,15 @@ namespace PolynomialLib.MathematicalCore
             return roots;
         }
 
+        /// <summary>
+        /// Find root closest to initial guess
+        /// </summary>
+        /// <param name="polynomial"></param>
+        /// <param name="initialGuess"></param>
+        /// <param name="maxIterations"></param>
+        /// <param name="tolerance"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         private double FindRoot(Polynomial polynomial, double initialGuess = 0, int maxIterations = 1000, double tolerance = 1e-7)
         {
             Polynomial derivativePolynomial = DerivativeCalculator.Differentiate(polynomial);

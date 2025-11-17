@@ -1,5 +1,8 @@
 ﻿namespace PolynomialLib.DataContainers
 {
+    /// <summary>
+    /// Container class for points list managing
+    /// </summary>
     public class Coordinates
     {
         public List<Point> XYCoordinates { get; set; } = new();
@@ -24,11 +27,19 @@
             XYCoordinates = new List<Point>();
         }
 
+        /// <summary>
+        /// Add element to the list
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public void Add(double x, double y)
         {
             XYCoordinates.Add(new Point(x, y));
         }
 
+        /// <summary>
+        /// Remove elements from the list
+        /// </summary>
         public void Remove()
         {
             XYCoordinates.RemoveAt(XYCoordinates.Count - 1);
