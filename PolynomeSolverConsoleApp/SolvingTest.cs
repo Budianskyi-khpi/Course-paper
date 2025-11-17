@@ -15,7 +15,8 @@ namespace PolynomeSolverConsoleApp
         {
             Console.Write("Given data: ");
             Console.WriteLine($"f_x = {solver.FxFunction}");
-            Console.WriteLine($"Given points:\n\tX = {string.Join(", ", solver.Coordinates.XCoordinates)}\n\tY = {string.Join(", ", solver.Coordinates.YCoordinates)}");
+            //Console.WriteLine($"Given points:\n\tX = {string.Join(", ", solver.Coordinates.XYCoordinates.X)}\n\tY = {string.Join(", ", solver.Coordinates.XYCoordinates.Y)}");
+            Console.WriteLine($"Given points: {string.Join(", ", solver.Coordinates.XYCoordinates)}");
 
             IRootFinder solvingMethod = new TangentMethodCalculator();
             var roots = solver.Solve(solvingMethod);

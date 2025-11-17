@@ -23,7 +23,7 @@ namespace PolynomialLib.MathematicalCore
         public Polynomial Calculate()
         {
             List<Polynomial> basisPolynomials = new List<Polynomial>();
-            for (int i = 0; i < Points.XCoordinates.Count; i++)
+            for (int i = 0; i < Points.XYCoordinates.Count; i++)
             {
                 basisPolynomials.Add(GetBasisPolynomial(i));
             }
@@ -39,11 +39,11 @@ namespace PolynomialLib.MathematicalCore
         {
             Polynomial numeratorPoly = new Polynomial(new List<double> { 1.0 });
 
-            for (int i = 0; i < Points.XCoordinates.Count; i++)
+            for (int i = 0; i < Points.XYCoordinates.Count; i++)
             {
                 if (i != currentIndex)
                 {
-                    double x_i = Points.XCoordinates[i];
+                    double x_i = Points.XYCoordinates[i].X;
 
                     // (x - x_i)
                     Polynomial termPolynom = new Polynomial(new List<double> { -x_i, 1.0 });
@@ -52,7 +52,7 @@ namespace PolynomialLib.MathematicalCore
                 }
             }
 
-            double x_j = Points.XCoordinates[currentIndex];
+            double x_j = Points.XYCoordinates[currentIndex].X;
             double denominatorValue = numeratorPoly.Evaluate(x_j);
 
             return numeratorPoly * (1.0 / denominatorValue);
@@ -68,7 +68,7 @@ namespace PolynomialLib.MathematicalCore
             for (int i = 0; i < basisPolynomials.Count; i++)
             {
                 Polynomial l_j_poly = basisPolynomials[i];
-                double y_j = Points.YCoordinates[i];
+                double y_j = Points.XYCoordinates[i].Y;
 
                 // g(x) = g(x) + (y_j * l_j(x))
                 generalFunctionPoly += y_j * l_j_poly;

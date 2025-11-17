@@ -8,15 +8,10 @@
     </Coefficients>
   </FxCoefficients>
   <GxCoordinates>
-    <XCoordinates>
-      <double>1</double>
-      <double>2</double>
-      <double>3</double>
-    </XCoordinates>
-    <YCoordinates>
-      <double>3</double>
-      <double>8</double>
-      <double>6</double>
-    </YCoordinates>
+    <XYCoordinates>
+      <Point X="1" Y="3" />
+      <Point X="2" Y="8" />
+      <Point X="3" Y="6" />
+    </XYCoordinates>
   </GxCoordinates>
 </EquationData>

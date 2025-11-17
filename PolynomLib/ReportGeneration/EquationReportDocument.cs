@@ -27,14 +27,15 @@ namespace PolynomialLib.ReportGeneration
                 {
                     // f(x) block
                     column.Item().Text("Input data:").Bold().FontSize(14);
-                    string f_text = "f(x) = " + string.Join(" + ", _model.F_Coefficients.Coefficients.Select((coef, i) => $"{coef}*x^{i}"));
+                    //string f_text = "f(x) = " + string.Join(" + ", _model.F_Coefficients.Coefficients.Select((coef, i) => $"{coef}*x^{i}"));
+                    string f_text = "f(x) = " + _model.F_Coefficients;
                     column.Item().Text(f_text);
 
                     // g(x) block
                     column.Item().Text("g(x) given by points:").Bold();
-                    for (int i = 0; i < _model.G_Coordinates.XCoordinates.Count; i++)
+                    for (int i = 0; i < _model.G_Coordinates.XYCoordinates.Count; i++)
                     {
-                        column.Item().Text($"  ({_model.G_Coordinates.XCoordinates[i]}, {_model.G_Coordinates.YCoordinates[i]})");
+                        column.Item().Text($"  ({_model.G_Coordinates.XYCoordinates[i].X}, {_model.G_Coordinates.XYCoordinates[i].Y})");
                     }
 
                     // Results
