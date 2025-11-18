@@ -16,13 +16,13 @@ namespace PolynomialLib
         // Implementation of the "Singleton" pattern
         private static PolynomialFacade? instance = null;
 
-        private readonly XmlManager<EquationData> _xmlManager = new();
+        private readonly ISerializer<EquationData> xmlManager = new XmlManager<EquationData>();
 
         public EquationData EquationData { get; private set; }
         public Polynomial FxFunction => EquationData.FxCoefficients;
+        public Coordinates Coordinates => EquationData.GxCoordinates;
         public Polynomial GxFunction { get; private set; }
         public Polynomial FxGxFunction { get; private set; }
-        public Coordinates Coordinates => EquationData.GxCoordinates;
         public bool Solved { get; private set; }
         public List<double> Roots { get; private set; }
 
@@ -145,7 +145,7 @@ namespace PolynomialLib
             {
                 throw new ArgumentNullException("Path can't be null!");
             }
-            return _xmlManager.Read(fullPpath);
+            return xmlManager.Read(fullPpath);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace PolynomialLib
             {
                 throw new ArgumentNullException("Path can't be null!");
             }
-            _xmlManager.Write(EquationData, fullPpath);
+            xmlManager.Write(EquationData, fullPpath);
         }
 
         /// <summary>
@@ -234,12 +234,22 @@ namespace PolynomialLib
             Solved = false;
         }
         
+        /// <summary>
+        /// Deletes file from given path
+        /// </summary>
+        /// <param name="path">Path to file</param>
         public void DeleteFile(string path)
         {
             PathManager.Delete(path);
 
         }
 
+        /// <summary>
+        /// Ranges to adjast graph generation
+        /// </summary>
+        /// <param name="xMargin"></param>
+        /// <param name="yMargin"></param>
+        /// <returns></returns>
         public (double, double, double, double) Ranges(double xMargin = 2, double yMargin = 3)
         {
             Solve();

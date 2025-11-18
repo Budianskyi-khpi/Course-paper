@@ -11,7 +11,7 @@ namespace PolynomialLib.DataManager
     /// Class for writing/reading data to\from XML file
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal class XmlManager<T>
+    internal class XmlManager<T>: ISerializer<T>
     {
         private string _path;
 

@@ -8,7 +8,7 @@ namespace PolynomialLib.ReportGeneration
 {
     public class HtmlGenerator : AbstractGenerator
     {
-        private string DEFAULT_NAME = "HtmlReport";
+        private const string DEFAULT_NAME = "HtmlReport";
         ReportModel model;
 
         public HtmlGenerator(ReportModel model)
@@ -52,11 +52,6 @@ namespace PolynomialLib.ReportGeneration
             try
             {
                 File.WriteAllText(fullPath, htmlContent, Encoding.UTF8);
-
-                // using (StreamWriter writer = new StreamWriter(fullPath, false, Encoding.UTF8))
-                // {
-                //     writer.Write(htmlContent);
-                // }
             }
             catch (Exception ex)
             {
@@ -94,7 +89,6 @@ namespace PolynomialLib.ReportGeneration
             // f(x) Block 
             sb.AppendLine("  <div class=\"content-block\">");
             sb.AppendLine("    <h2>Input Data: f(x)</h2>");
-            //string f_text = "f(x) = " + string.Join(" + ", model.F_Coefficients.Coefficients.Select((coef, i) => $"{coef}*x<sup>{i}</sup>"));
             string f_text = "f(x) = " + model.F_Coefficients;
             sb.AppendLine("    <p><code>" + f_text + "</code></p>");
             sb.AppendLine("  </div>");

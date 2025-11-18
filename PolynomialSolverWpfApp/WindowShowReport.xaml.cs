@@ -21,7 +21,6 @@ namespace PolynomialSolverWpfApp
             _generator = generatingMethod;
 
             InitializeComponent();
-            // Запускаємо відображення звіту
             InitializeAndNavigate();
         }
 
