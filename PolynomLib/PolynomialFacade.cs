@@ -24,7 +24,7 @@ namespace PolynomialLib
         public Polynomial GxFunction { get; private set; }
         public Polynomial FxGxFunction { get; private set; }
         public bool Solved { get; private set; }
-        public List<double> Roots { get; private set; }
+        public List<double>? Roots { get; private set; }
 
         private PolynomialFacade(EquationData equationData)
         {
@@ -117,7 +117,11 @@ namespace PolynomialLib
         {
             if(Solved)
             {
-                if(Roots.Count == 0)
+                if(Roots == null)
+                {
+                    return "Equation has infinit number of roots!";
+                }
+                else if(Roots.Count == 0)
                 {
                     return $"Equation doesn't have any roots!";
                 }
@@ -253,8 +257,19 @@ namespace PolynomialLib
         public (double, double, double, double) Ranges(double xMargin = 2, double yMargin = 3)
         {
             Solve();
-            double xMin = Roots.Count > 0 ? Roots.Min() - xMargin : -xMargin;
-            double xMax = Roots.Count > 0 ? Roots.Max() + xMargin : xMargin;
+
+            List<double> roots;
+            if (Roots == null)
+            {
+                roots = new List<double>() { };
+            }
+            else
+            {
+                roots = Roots;
+            }
+
+            double xMin = roots.Count > 0 ? Roots.Min() - xMargin : -xMargin;
+            double xMax = roots.Count > 0 ? Roots.Max() + xMargin : xMargin;
             double yFrom = FxGxFunction.Evaluate(xMin);
             double yTo = FxGxFunction.Evaluate(xMax);
             double yMin = Math.Min(Math.Min(yFrom, yTo), 0) - yMargin;

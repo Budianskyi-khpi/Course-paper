@@ -22,7 +22,11 @@ namespace PolynomialSolverWpfApp
         private double x0;     // x-coordinate of the origin
         private double y0;     // y-coordinate of the origin
 
-        public void DrawGraph( Canvas canvasGraph, Polynomial polynomial,
+
+
+        private SolidColorBrush[] colors = new SolidColorBrush[] { Brushes.Green, Brushes.Blue, Brushes.Red };
+
+        public void DrawGraph( Canvas canvasGraph, List<Polynomial> polynomials,
             double xMin = -5, double xMax = 5, double yMin = -5, double yMax = 5)
         {
             this.canvasGraph = canvasGraph;
@@ -38,8 +42,24 @@ namespace PolynomialSolverWpfApp
             DrawYGrid(yMin, yMax);
             DrawAxes();
 
-            DrawPolynomial(Brushes.Red, polynomial);
-                
+            for(int i = 0; i < polynomials.Count; i++)
+            {
+                DrawPolynomial(colors[i%colors.Length], polynomials[i]);
+                DrawLegacy(i, polynomials[i]);
+            }
+        }
+
+        private void DrawLegacy(int i, Polynomial polynomial)
+        {
+            double legendX = width - 170;   
+            double legendYStart = 20;       
+            double legendLineLength = 30;   
+            double legendSpacing = 20;
+
+            double legendY = legendYStart + i * legendSpacing;
+
+            AddLine(colors[i % colors.Length], legendX, legendY, legendX + legendLineLength, legendY);
+            AddText(polynomial.ToString(), legendX + legendLineLength + 5, legendY - 8);
         }
 
         private void DrawXGrid(double xMin, double xMax)
