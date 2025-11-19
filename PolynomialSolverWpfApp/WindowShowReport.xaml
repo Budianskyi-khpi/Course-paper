@@ -21,6 +21,5 @@
             <Button Content="Save Report" Width="100" Margin="5,0" Click="Button_Save_Click" />
             <Button Content="Close" Width="100" Margin="5,0" Click="Button_Close_Click" />
         </StackPanel>
-
     </Grid>
 </Window>

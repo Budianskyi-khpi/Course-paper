@@ -277,12 +277,13 @@ namespace PolynomialSolverWpfApp
                 if ( facade.Solved && CanvasGraph != null)
                 {
                     (double xMin, double xMax, double yMin, double yMax) = facade.Ranges(xMargin: 2, yMargin: 2);
-                    new GraphBuilder().DrawGraph(CanvasGraph, facade.FxGxFunction, xMin, xMax, yMin, yMax);
+                    new GraphBuilder().DrawGraph(CanvasGraph, new List<Polynomial>() { facade.FxFunction, facade.GxFunction, facade.FxGxFunction }, 
+                        xMin, xMax, yMin, yMax);
                 }
             }
             catch
             {
-                MessageBox.Show("Something went wrong! ");
+                MessageBox.Show("Something went wrong! Can't build the graph.");
             }
         }
 

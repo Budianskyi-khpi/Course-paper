@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PolynomialLib.DataContainers;
+using System.Linq;
 
 namespace PolynomialLib.MathematicalCore
 {
@@ -25,8 +27,13 @@ namespace PolynomialLib.MathematicalCore
         /// </summary>
         /// <param name="polynomial"></param>
         /// <returns></returns>
-        public List<double> FindRoots(Polynomial polynomial)
+        public List<double>? FindRoots(Polynomial polynomial)
         {
+            if (polynomial.Coefficients.All(x => x == 0))
+            {
+                return null;
+            }
+
             List<double> roots = new List<double>();
             foreach (var initialGuess in initialGuesses)
             {
