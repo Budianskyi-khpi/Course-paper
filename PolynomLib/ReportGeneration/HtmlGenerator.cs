@@ -108,7 +108,11 @@ namespace PolynomialLib.ReportGeneration
             // Results Block 
             sb.AppendLine("  <div class=\"content-block\">");
             sb.AppendLine("    <h2>Results: Found Roots</h2>");
-            if (model.Roots.Any())
+            if (model.Roots == null)
+            {
+                sb.AppendLine("    <p>Equation has infinit number of roots!</p>");
+            }
+            else if (model.Roots.Any())
             {
                 sb.AppendLine("    <ul>");
                 foreach (var root in model.Roots)

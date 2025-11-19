@@ -42,11 +42,18 @@ namespace PolynomialLib.ReportGeneration
                     //column.Item().Spacing(20); 
                     column.Item().Text("Results:").Bold().FontSize(16);
                     column.Item().Text("Finded roots:");
-
-                    foreach (var root in _model.Roots)
+                    if (_model.Roots != null)
                     {
-                        column.Item().Text($"  x = {root:F5}");
+                        foreach (var root in _model.Roots)
+                        {
+                            column.Item().Text($"  x = {root:F5}");
+                        }
                     }
+                    else
+                    {
+                        column.Item().Text($"  There is infinit number of roots!");
+                    }
+                    
                 });
 
                 page.Footer().AlignCenter()
