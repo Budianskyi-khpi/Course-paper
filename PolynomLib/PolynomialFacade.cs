@@ -49,7 +49,7 @@ namespace PolynomialLib
         /// Factory method for creating an empty object
         /// </summary>
         /// <returns>new facade object</returns>
-        public static PolynomialFacade GetInstance()
+        public static PolynomialFacade GetInstance() // Lazy initialization
         {
             if (instance == null)
             {
