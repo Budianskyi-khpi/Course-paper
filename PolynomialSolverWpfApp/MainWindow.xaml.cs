@@ -1,13 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Data;
-using System.Windows.Controls;
-using System.IO;
-
-using System.Windows.Shapes;
 using PolynomialLib;
 using PolynomialLib.DataContainers;
 using PolynomialLib.ReportGeneration;
-using System.Windows.Media;
+using PolynomialLib.ReportGeneration.Factory;
 
 namespace PolynomialSolverWpfApp
 {
@@ -211,6 +207,7 @@ namespace PolynomialSolverWpfApp
         {
             string filePath;
             AbstractGenerator htmlGenerator;
+            ReportFactory factory;
 
             SyncFTableToModel();
             if (!facade.Solved)
@@ -223,7 +220,8 @@ namespace PolynomialSolverWpfApp
             try
             {
                 ReportModel reportModel = new(facade.EquationData.FxCoefficients, facade.Coordinates, facade.Roots);
-                htmlGenerator = new HtmlGenerator(reportModel);
+                factory = new HtmlFactory(reportModel);
+                htmlGenerator = factory.Create();
                 filePath = facade.GenerateReport(htmlGenerator);
                 MessageBox.Show("File saved");
             }
@@ -241,6 +239,7 @@ namespace PolynomialSolverWpfApp
         {
             string filePath;
             AbstractGenerator pdfGenerator;
+            ReportFactory factory;
 
             SyncFTableToModel();
             if (!facade.Solved)
@@ -253,7 +252,8 @@ namespace PolynomialSolverWpfApp
             try
             {
                 ReportModel reportModel = new(facade.EquationData.FxCoefficients, facade.Coordinates, facade.Roots);
-                pdfGenerator = new PdfGenerator(reportModel);
+                factory = new PdfFactory(reportModel);
+                pdfGenerator = factory.Create();
                 filePath = facade.GenerateReport(pdfGenerator);
                 MessageBox.Show("File saved");
             }
